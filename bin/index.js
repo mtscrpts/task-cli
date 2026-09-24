@@ -38,7 +38,7 @@ async function saveTasks(tasks) {
 async function addTask(text) {
     const tasks = await loadTasks();
     tasks.push({ id: Date.now(), text, done: false});
-    saveTasks(tasks);
+    await saveTasks(tasks);
     console.log(`Added: "${text}"`);
 }
 
@@ -55,7 +55,7 @@ async function completeTask(id) {
     const task = tasks.find(t => t.id === Number(id));
     if (!task) return console.log(`Task not found.`);
     task.done = true;
-    saveTasks(tasks);
+    await saveTasks(tasks);
     console.log(`Completed: "${task.text}"`);
 }
 
@@ -63,7 +63,7 @@ async function deleteTask(id) {
     const tasks = await loadTasks();
     const index = tasks.findIndex(t => t.id === Number(id));
     if (index < 0) return console.log('Task not found.');
-    tasks.splice(index, 1);
+    await tasks.splice(index, 1);
     saveTasks(tasks);
     console.log("Task deleted.");
 
