@@ -7,14 +7,13 @@ import url from 'url';
 const program = new Command();
 
 
-
 const { readFile, writeFile } = fs.promises;
 // get current file - /Users/maylyntalampas/Dev/node-projects/task-cli/index.js
 const __filename = url.fileURLToPath(import.meta.url);
 // get current file dir - /Users/maylyntalampas/Dev/node-projects/task-cli
 const __dirname = path.dirname(__filename);
 // get task file inside current dir - /Users/maylyntalampas/Dev/node-projects/task-cli/tasks.json
-const FILE = path.join(__dirname, '..', 'tasks.json');
+const FILE = path.join(process.cwd(), 'tasks.json');
 
 
 async function loadTasks() {
