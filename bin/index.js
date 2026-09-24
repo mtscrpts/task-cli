@@ -22,7 +22,7 @@ async function loadTasks() {
         return JSON.parse(data);
     } catch (err) {
         if (err.code === 'ENOENT') return [];
-        console.error('Error loading tasks:', err);
+        console.error(`Error loading tasks: ${err}`);
         return [];
     }
 }
@@ -31,7 +31,7 @@ async function saveTasks(tasks) {
     try {
         await writeFile(FILE, JSON.stringify(tasks, null, 2));
     } catch (err) {
-        console.error(`Error saving tasks: ${tasks}`);
+        console.error(`Error saving tasks: ${err}`);
     }
 }
 
