@@ -22,6 +22,7 @@ async function loadTasks() {
         const data = await readFile(FILE, 'utf-8');
         return JSON.parse(data);
     } catch (err) {
+        if (err.code === 'ENOENT') return [];
         console.error('Error loading tasks:', err);
         return [];
     }
